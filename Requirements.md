@@ -13,3 +13,33 @@
 | FR-005 | Functional | The system shall allow the clinic administrator to verify doctors before they are granted access to patient health records. | Medium | Pass: Only verified doctors can receive patient-record access. Fail: An unverified doctor receives access. | Helps prevent unauthorized healthcare personnel from accessing patient information. |
 | NFR-001 | Performance & Security | All consent grant, revoke, and access events shall be permanently written to an append-only audit trail. | High | Pass: All required events are recorded and cannot be modified. Fail: An event is missing or an existing audit record can be altered. | Provides accountability and supports detection and investigation of unauthorized access. |
 | NFR-002 | Security | Patient health records shall be accessible only to authorized users with valid consent. | High | Pass: Unauthorized access attempts are denied. Fail: An unauthorized user is able to access patient health records. | Protects sensitive patient health information from unauthorized access. |
+
+
+
+## Use-Case Flow Specification
+
+### Use Case: Grant Consent
+
+**Preconditions**
+- The patient is registered and logged in.
+- The clinic doctor is present in the system.
+- The clinic doctor has been verified by the clinic administrator.
+
+**Main Success Scenario**
+1. The patient selects Grant Consent.
+2. The patient selects the health records to be shared.
+3. The patient selects a verified clinic doctor.
+4. The patient specifies the consent duration.
+5. The system verifies that the selected doctor is authorized.
+6. The system grants the doctor access to the selected health records.
+7. The system records the consent-grant event in the audit trail.
+8. The system automatically revokes access when the consent expires.
+
+**Alternate Flow**
+- If the selected doctor is not verified, the system denies the consent request and does not grant access to the health records.
+
+**Postconditions**
+- The consent is recorded successfully.
+- The authorized doctor has access to the permitted records for the specified duration.
+- The consent event is recorded in the audit trail.
+- Access is revoked when the consent expires.
