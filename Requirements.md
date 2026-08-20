@@ -14,7 +14,9 @@
 | NFR-001 | Performance & Security | All consent grant, revoke, and access events shall be permanently written to an append-only audit trail. | High | Pass: All required events are recorded and cannot be modified. Fail: An event is missing or an existing audit record can be altered. | Provides accountability and supports detection and investigation of unauthorized access. |
 | NFR-002 | Security | Patient health records shall be accessible only to authorized users with valid consent. | High | Pass: Unauthorized access attempts are denied. Fail: An unauthorized user is able to access patient health records. | Protects sensitive patient health information from unauthorized access. |
 
+## UML Use-Case Diagram
 
+![Patient Health Record Consent Management System Use-Case Diagram](Patient_Health_Record_Use_Case_Diagram.drawio.png)
 
 ## Use-Case Flow Specification
 
