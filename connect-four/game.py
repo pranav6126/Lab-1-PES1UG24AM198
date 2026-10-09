@@ -1,4 +1,4 @@
-from board import Board
+from board import Board, COLS, ROWS
 from ai import AI
 
 
@@ -9,34 +9,47 @@ class Game:
         self.turn = "X"
 
     def run(self):
-        print("Connect Four — you are X.")
+        print("Connect Four — you are X. Enter 1-7 to drop a disc, q to quit.")
         while True:
             self.board.print()
+
             if self.turn == "X":
-                raw = input("Column (1-7), or q: ").strip().lower()
-                if raw == "q":
+                try:
+                    raw = input("Column (1-7), or q: ").strip().lower()
+                except (EOFError, KeyboardInterrupt):
+                    print("\nInput closed. Game ended.")
+                    return
+                if raw in ("q", "quit"):
+                    print("You quit. Game over.")
                     return
                 try:
                     col = int(raw) - 1
                 except ValueError:
-                    print("Enter a column number.")
+                    print("Invalid input: enter a number from 1 to 7, or q.")
+                    continue
+                if not 0 <= col < COLS:
+                    print("Invalid column: choose a number from 1 to 7.")
                     continue
             else:
-                col = self.ai.choose_column(self.board)
-
-            if col is None or self.board.drop(col, self.turn) is None:
-                print("Column unavailable.")
-                if self.turn == "O":
+                col = self.ai.choose_column(self.board, me="O", opponent="X")
+                if col is None:
+                    print("AI has no legal move.")
                     return
+
+            row = self.board.drop(col, self.turn)
+            if row is None:
+                print(f"Column {col + 1} is full. Pick another column.")
                 continue
 
+
+            # A winning move ends the game before another turn is requested
             if self.board.winner(self.turn):
                 self.board.print()
-                print(self.turn, "wins!")
+                print(f"{self.turn} wins!")
                 return
             if self.board.full():
                 self.board.print()
-                print("Draw.")
+                print("Draw: the board is full.")
                 return
 
             self.turn = "O" if self.turn == "X" else "X"
