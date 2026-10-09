@@ -41,6 +41,8 @@ class Game:
                 print(f"Column {col + 1} is full. Pick another column.")
                 continue
 
+            # Task 4: feedback once per actual placement
+            print(f"{self.turn} placed a disc in column {col + 1} (row {ROWS - row} from the bottom).")
 
             # A winning move ends the game before another turn is requested
             if self.board.winner(self.turn):
