@@ -1,0 +1,18 @@
+$ coverage erase
+$ coverage run --branch -m pytest BranchCoverageTest_student_grades.py
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.2.0, pluggy-1.7.0
+rootdir: /home/claude/L6_L7_16_student_grades/Lab 6
+collected 29 items
+
+BranchCoverageTest_student_grades.py .............................       [100%]
+
+============================== 29 passed in 0.06s ==============================
+
+$ coverage report -m
+Name                                   Stmts   Miss Branch BrPart  Cover   Missing
+----------------------------------------------------------------------------------
+BranchCoverageTest_student_grades.py      45      0      0      0   100%
+student_grades.py                         33      0     26      0   100%
+----------------------------------------------------------------------------------
+TOTAL                                     78      0     26      0   100%
