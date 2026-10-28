@@ -1,0 +1,18 @@
+$ coverage erase
+$ coverage run -m pytest CodeCoverageTest_student_grades.py
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.2.0, pluggy-1.7.0
+rootdir: /home/claude/L6_L7_16_student_grades/Lab 6
+collected 19 items
+
+CodeCoverageTest_student_grades.py ...................                   [100%]
+
+============================== 19 passed in 0.04s ==============================
+
+$ coverage report -m
+Name                                 Stmts   Miss  Cover   Missing
+------------------------------------------------------------------
+CodeCoverageTest_student_grades.py      49      0   100%
+student_grades.py                       33      0   100%
+------------------------------------------------------------------
+TOTAL                                   82      0   100%
